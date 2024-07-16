@@ -1,0 +1,77 @@
+{% extends "book_list.html" %}
+{% block title %}Explore{% endblock title %}
+
+{% block head %}
+<style>
+    /* explore.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.book-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin: 15px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.book-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.book-item h3, .book-item h4 {
+    margin: 10px 0;
+}
+
+.book-item p {
+    margin: 20px 0 0;
+}
+
+.book-item:hover {
+    transform: scale(1.05);
+}
+
+</style>
+{% endblock head %}
+
+{% block body %}
+<div class="container">
+    <h1>Explore Books</h1>
+    <div class="book-list">
+        {% for book in books %}
+        <div class="book-item">
+            <img src="{{ book.cover.url }}" alt="{{ book.book_name }} cover">
+            <h3>{{ book.book_name }}</h3>
+            <h4>{{ book.author }}</h4>
+            <p><a href="{{ book.pdf.url }}">Download PDF</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}
+
